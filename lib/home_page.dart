@@ -1,7 +1,5 @@
-import 'package:bdjobs_test/date_time.dart';
+import 'package:bdjobs_test/details_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,6 +16,8 @@ class _HomePageState extends State<HomePage> {
   bool isChecked1 = false;
   bool isChecked2 = false;
   bool isChecked3 = false;
+  bool isChecked4 = false;
+  bool isChecked5 = false;
 
   late TextEditingController _controller;
   DateTime _selectedDate = DateTime.now();
@@ -59,17 +59,16 @@ class _HomePageState extends State<HomePage> {
         title: Text("Page_1"),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 194, 170, 10),
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(100),
-                bottomRight: Radius.circular(100)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 50, left: 30),
+      body: Container(
+        margin: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 194, 170, 10),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(100), bottomRight: Radius.circular(100)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50, left: 30, bottom: 20),
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Row(children: [
@@ -97,7 +96,10 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Text(
                       "Publisher Name",
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
@@ -114,12 +116,13 @@ class _HomePageState extends State<HomePage> {
                   height: 30,
                 ),
                 Row(children: [
-                  Text(
-                    "Publisher Age",
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  ),
+                  Text("Publisher Age",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
                   SizedBox(
-                    width: 10,
+                    width: 15,
                   ),
                   DropdownButton<int>(
                     value: _selectedAge,
@@ -144,15 +147,21 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Text(
                       "Page No",
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Page N0',
-                      ),
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 2, right: 5),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Page No',
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 30,
@@ -161,19 +170,25 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Text(
                       "Publish Date",
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
-                TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                    hintText: 'Select date',
-                    suffixIcon: Icon(Icons.calendar_today),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      hintText: 'Select date',
+                      suffixIcon: Icon(Icons.calendar_today),
+                    ),
+                    onTap: () {
+                      _selectDate(context);
+                    },
                   ),
-                  onTap: () {
-                    _selectDate(context);
-                  },
                 ),
                 SizedBox(
                   height: 30,
@@ -182,51 +197,75 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Text(
                       "Books Type",
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Container(
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              value: isChecked1,
-                              onChanged: (value) {
-                                setState(() {
-                                  isChecked1 = value!;
-                                });
-                              },
-                            ),
-                            Text("Sci-fi"),
-                            Checkbox(
-                              value: isChecked2,
-                              onChanged: (value) {
-                                setState(() {
-                                  isChecked2 = value!;
-                                });
-                              },
-                            ),
-                            Text("Drama"),
-                            Checkbox(
-                              value: isChecked3,
-                              onChanged: (value) {
-                                setState(() {
-                                  isChecked3 = value!;
-                                });
-                              },
-                            ),
-                            Text("Novel"),
-                          ],
-                        ),
-                      ),
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Container(
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          value: isChecked1,
+                          onChanged: (value) {
+                            setState(() {
+                              isChecked1 = value!;
+                            });
+                          },
+                        ),
+                        Text("Sci-fi"),
+                        Checkbox(
+                          value: isChecked2,
+                          onChanged: (value) {
+                            setState(() {
+                              isChecked2 = value!;
+                            });
+                          },
+                        ),
+                        Text("Drama"),
+                        Checkbox(
+                          value: isChecked3,
+                          onChanged: (value) {
+                            setState(() {
+                              isChecked3 = value!;
+                            });
+                          },
+                        ),
+                        Text("Novel"),
+                        Checkbox(
+                          value: isChecked4,
+                          onChanged: (value) {
+                            setState(() {
+                              isChecked4 = value!;
+                            });
+                          },
+                        ),
+                        Text("Fiction"),
+                        Checkbox(
+                          value: isChecked5,
+                          onChanged: (value) {
+                            setState(() {
+                              isChecked5 = value!;
+                            });
+                          },
+                        ),
+                        Text("Poem"),
+                      ],
+                    ),
+                  ),
+                ),
                 SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Details()));
+                    },
                     child: Text(
                       "Save",
                       style: TextStyle(
